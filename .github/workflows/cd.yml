@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  push:
+    tags:
+      - '*v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['lts/*']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: NPM Token
+        run: npm config set -- '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_PUBLISH_TOKEN }}"
+
+      - name: NPM publish
+        run: npm publish dist --verbose
