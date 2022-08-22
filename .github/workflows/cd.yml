@@ -34,4 +34,4 @@ jobs:
         run: npm config set -- '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_PUBLISH_TOKEN }}"
 
       - name: NPM publish
-        run: npm publish dist --verbose
+        run: npm publish ./dist --verbose --access public

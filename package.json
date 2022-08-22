@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/cli",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "./src/index.js",
   "repository": "https://github.com/lekhacman/mockingbird-cli.git",
   "author": "Le Khac Man <lekhacman@outlook.com>",
